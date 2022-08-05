@@ -106,3 +106,18 @@ class CoursesTable(serializers.ModelSerializer):
         many = True
         model = Courses
         fields = '__all__'
+
+class AreasTable(serializers.ModelSerializer):
+
+    class Meta: 
+        many = True
+        model = Areas
+        fields = '__all__'
+
+class RequestLoginTable(serializers.ModelSerializer):
+
+    idAreaFK = AreasTable(read_only=True)
+    class Meta: 
+        many = True
+        model = RequestLogin
+        fields = '__all__'

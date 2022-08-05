@@ -1,3 +1,4 @@
+from unittest.util import _MAX_LENGTH
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
@@ -130,3 +131,9 @@ class MaintenanceOrder(models.Model):
     status = models.CharField(max_length=15)
     idMachineFK = models.ForeignKey(Machine, related_name="machineMaintenanceOrder", on_delete=models.CASCADE)
     idAssociateFK = models.ForeignKey(User, related_name="userMaintenanceOrder", on_delete=models.CASCADE)
+
+class RequestLogin(models.Model):
+
+    name = models.CharField(max_length=200)
+    EDV = models.CharField(max_length=15)
+    idAreaFK = models.ForeignKey(Areas, related_name="areas", on_delete=models.CASCADE)

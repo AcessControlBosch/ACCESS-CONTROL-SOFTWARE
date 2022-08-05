@@ -104,3 +104,11 @@ class detAreas(admin.ModelAdmin):
     list_per_page = 10
 
 admin.site.register(Areas, detAreas)
+
+class detRequestLogin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'EDV', 'idAreaFK')
+    list_display_links = ('id',)
+    search_fields = ('name',)
+    list_per_page = 10
+
+admin.site.register(RequestLogin, detRequestLogin)

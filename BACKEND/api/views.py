@@ -492,3 +492,76 @@ class MaintenanceOrderAPI(APIView):
         MaintenanceOrderTableResult = MaintenanceOrder.objects.get(id=pk)       
         MaintenanceOrderTableResult.delete()
         return Response({"msg": "Apagado com sucesso"})
+
+
+class AreaAPI(APIView):
+
+    def get(self, request, pk=''):
+
+        if pk == '':
+            AreaResult = Areas.objects.all()
+            serializer = AreasTable(AreaResult, many=True)
+            return Response(serializer.data)
+
+        else:
+            AreaResult = Areas.objects.get(id=pk)
+            serializer = AreasTable(AreaResult)
+            return Response(serializer.data)
+
+
+    def post(self, request):
+
+        serializer = AreasTable(data=request.data, many=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()        
+        return Response({"msg": "Inserido com sucesso"})
+    
+    def put(self, request, pk=''):
+
+        AreaResult = Areas.objects.get(id=pk)
+        serializer = AreasTable(AreaResult, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+    
+    def delete(self, request, pk=''):
+
+        AreaResult = Areas.objects.get(id=pk)       
+        AreaResult.delete()
+        return Response({"msg": "Apagado com sucesso"})
+
+class RequestLoginAPI(APIView):
+
+    def get(self, request, pk=''):
+
+        if pk == '':
+            RequestLoginResult = RequestLogin.objects.all()
+            serializer = RequestLoginTable(RequestLoginResult, many=True)
+            return Response(serializer.data)
+
+        else:
+            RequestLoginResult = RequestLogin.objects.get(id=pk)
+            serializer = RequestLoginTable(RequestLoginResult)
+            return Response(serializer.data)
+
+
+    def post(self, request):
+
+        serializer = RequestLoginTable(data=request.data, many=True)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()        
+        return Response({"msg": "Inserido com sucesso"})
+    
+    def put(self, request, pk=''):
+
+        RequestLoginResult = RequestLogin.objects.get(id=pk)
+        serializer = RequestLoginTable(RequestLoginResult, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response(serializer.data)
+    
+    def delete(self, request, pk=''):
+
+        RequestLoginResult = RequestLogin.objects.get(id=pk)       
+        RequestLoginResult.delete()
+        return Response({"msg": "Apagado com sucesso"})
