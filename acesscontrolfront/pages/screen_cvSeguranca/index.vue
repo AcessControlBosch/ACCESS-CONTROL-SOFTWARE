@@ -25,11 +25,9 @@
                 <div class="formulario">
                     
                     <!-- <div class="line-question">
-
                         <input type="checkbox" class="checkbox" id="um"/>
                         <label class="p-question" for="um">1 - Proteções</label>
                         
-
                     </div> -->
 
                     
@@ -62,74 +60,44 @@
 </template>
 
 <script>
-
 export default {
-
     name: 'screen_cvSeguranca',
-
     data(){
-
         return{
-
             allQuestions: [],
             responseQuestions: [],
             valueCheckBox: [],
             idQuestion:[]    
         }
-
     },
     methods:{
         checkBoxclick(){
-
         }
     },
     created(){
         this.$axios.get(this.$store.state.BASE_URL + '/greenbooks/'+ this.$store.state.idmachine + '/2').then((response) => {
             console.log('oi created')
-
-
             this.allQuestions = response.data;
-
             console.log(this.allQuestions)
-
             let i = 0;
-
             for(i; i < this.allQuestions.length; i++){
-
                 this.responseQuestions.push(this.allQuestions[i].question);
                 this.idQuestion.push(i+1);
-
             }
             console.log('this.idQuestion',this.idQuestion)
-
         }).catch((error) => {
-
             console.log(error)
-
         })
-
     },
-
-
     methods: {
-
         verifyQuestions: function(){
-
             
-
-
         }
-
-
     },
-
 }
-
 </script>
 
 <style lang="scss" scoped>
-
     @import "@/layouts/_normal_pages/Screen_CvSeguranca.scss";
     @import "@/layouts/_responsividade/responsividade_grid.scss";
-
 </style>

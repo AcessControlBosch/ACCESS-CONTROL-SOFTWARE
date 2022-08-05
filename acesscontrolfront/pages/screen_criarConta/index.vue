@@ -75,28 +75,33 @@ export default {
 
   methods:{
     
-    sendData: function(){
+    sendData: async function(){
 
-      const body = {
-        name: this.dataUser.name,
-        edv: this.dataUser.edv,
-        area: this.selectedArea
-      }
+      const body = [{
+          name: this.dataUser.name,
+          EDV: this.dataUser.edv,
+          idAreaFK: this.selectedArea.id
+        }];
 
-      if(body.name && body.edv && body.area){
+        if(body.name != "" && body.EDV != "" && body.idAreaFK != ""){
 
-        this.$axios.post("http://localhost:8000/requestLogins/", body).then((response) =>{
-          
-          alert("A sua requisição de Login está sendo supervisionada por um administrador!")
-        
-        }).catch((error) => {
-          console.log(error)
-        })
-        
-      } else {
-        alert("Preencha todos os campos!")
-      }
+          this.$axios.post(this.$store.state.BASE_URL + "/requestLogins/", body).then((response) => {
 
+            alert("Envio com sucesso! Sua requeisição sera avaliada por um administrador!");
+
+          }).catch((error) => {
+
+            alert("Atenção, usuário não cadastrado!");
+            console.log(error);
+
+          });
+
+        } else {
+
+          alert("Preencha todos os campos!")
+
+        }
+ 
     }
 
   }

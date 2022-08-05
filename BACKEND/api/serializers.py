@@ -116,7 +116,15 @@ class AreasTable(serializers.ModelSerializer):
 
 class RequestLoginTable(serializers.ModelSerializer):
 
+    class Meta: 
+        many = True
+        model = RequestLogin
+        fields = '__all__'
+
+class RequestGetLoginTable(serializers.ModelSerializer):
+
     idAreaFK = AreasTable(read_only=True)
+    
     class Meta: 
         many = True
         model = RequestLogin

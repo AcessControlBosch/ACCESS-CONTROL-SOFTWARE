@@ -66,7 +66,6 @@ export default {
         this.$auth.loginWith(
           "local", {data: this.user})
           .then((response) => {
-            console.log("response",response)
             console.log("Usuário Logado")
         }).catch((response) =>{
 

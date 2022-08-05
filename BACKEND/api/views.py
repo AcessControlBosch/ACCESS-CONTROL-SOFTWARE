@@ -536,12 +536,12 @@ class RequestLoginAPI(APIView):
 
         if pk == '':
             RequestLoginResult = RequestLogin.objects.all()
-            serializer = RequestLoginTable(RequestLoginResult, many=True)
+            serializer = RequestGetLoginTable(RequestLoginResult, many=True)
             return Response(serializer.data)
 
         else:
             RequestLoginResult = RequestLogin.objects.get(id=pk)
-            serializer = RequestLoginTable(RequestLoginResult)
+            serializer = RequestGetLoginTable(RequestLoginResult)
             return Response(serializer.data)
 
 

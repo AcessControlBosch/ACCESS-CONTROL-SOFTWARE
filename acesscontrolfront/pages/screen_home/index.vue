@@ -40,21 +40,33 @@
 </template>
 
 <script>
-
 export default {
-
     middleware: 'auth',
-    name: 'screen_home'
-
+    name: 'screen_home',
+    data(){
+        return{
+            idMachine : '',
+        }
+    },
+    mounted(){
+        console.log("oi")
+        console.log(this.$store.state)
+        console.log('this.$store.state.machine', this.$store.state.ipAddressMachine)
+        this.$axios.get(this.$store.state.BASE_URL + '/machines/' + this.$store.state.ipAddressMachine).then((response) => {
+            console.log('oi created')
+            this.idMachine = response.data.id;
+            console.log('this.idMachine',this.idMachine);
+            this.$store.dispatch("setidmachine", this.idMachine);
+        }).catch((error) => {
+            console.log(error)
+        })
+    }
     
     
 }
-
 </script>
 
 <style lang="scss" scoped>
-
     @import "@/layouts/_normal_pages/Screen_Home.scss";
     @import "@/layouts/_responsividade/responsividade_grid.scss";
-
 </style>
